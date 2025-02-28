@@ -10,14 +10,14 @@ It helps developers improve code quality by providing structured insights based 
 - These codes work together.gui.py uses StaticAnalyzer to analyze the code from a file, and then it displays the results in a text area.
 
 ## Purpose & Value  
-- Ensures high-quality code by detecting code smells.  
+- Ensures high-quality code by detecting code smells and displaying in the GUI window.  
 - Helps developers maintain clean, efficient, and readable code.
-- Assists in AI-assisted code review by integrating machine learning for better insights.  
+- Assists in AI-assisted code review by integrating machine learning for better observations and results. This might or might not be used depending on the time availability.   
 
 ## Technologies Used  
 - **Python** (Core Programming)  
 - **Tkinter** (GUI for user-friendly interaction)  
-- **Machine Learning** (For advanced code smell detection)  
+- **Machine Learning (possibly)** (For advanced code smell detection)  
 
 ## Setup Instructions  
 
