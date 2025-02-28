@@ -25,7 +25,12 @@ class AnalyzerGUI:
 
     def display_results(self, results):
         self.result_area.delete(1.0, tk.END)
-        self.result_area.insert(tk.END, results)
+        parsed_results = json.loads(results)
+        if parsed_results:
+            for issue in parsed_results:
+                self.result_area.insert(tk.END, f"Line {issue['line']}: {issue['issue']}\n")
+        else:
+            self.result_area.insert(tk.END, "No issues detected.\n")
 
 if __name__ == "__main__":
     root = tk.Tk()
