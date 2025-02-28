@@ -11,7 +11,7 @@ It helps developers improve code quality by providing structured insights based 
 
 ## Purpose & Value  
 - Ensures high-quality code by detecting code smells.  
-- Helps developers maintain clean, efficient, and readable code.  
+- Helps developers maintain clean, efficient, and readable code.
 - Assists in AI-assisted code review by integrating machine learning for better insights.  
 
 ## Technologies Used  
