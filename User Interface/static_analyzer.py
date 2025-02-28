@@ -18,11 +18,12 @@ class StaticAnalyzer:
     def detect_blocking_operations(self):
         """Detect potential real-time constraint violations (e.g., sleep calls)."""
         for node in ast.walk(self.tree):
-            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "sleep":
-                self.issues.append({
-                    "issue": "Blocking operation detected (sleep call)",
-                    "line": node.lineno
-                })
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+                if node.func.id == "sleep":
+                    self.issues.append({
+                        "issue": "Blocking operation detected (sleep call)",
+                        "line": node.lineno
+                    })
 
     def analyze(self):
         """Run all analysis checks."""
