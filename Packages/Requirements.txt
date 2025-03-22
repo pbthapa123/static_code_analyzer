@@ -1,0 +1,14 @@
+# GUI
+tk
+
+# Machine Learning (optional: if implemented later)
+scikit-learn
+numpy
+pandas
+
+# Code analysis (if we plan to expand this later)
+flake
+pylint
+
+# Optional utility packages (good for progress and logging)
+requests
