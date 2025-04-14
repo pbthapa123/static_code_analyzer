@@ -9,13 +9,11 @@ class StaticAnalyzer:
     def detect_memory_issues(self):
         """Detect inefficient memory allocations (e.g., list comprehensions)."""
         for node in ast.walk(self.tree):
-            # Detect list comprehension
             if isinstance(node, ast.ListComp):
                 self.issues.append({
                     "issue": "Inefficient memory usage detected (List comprehension)",
                     "line": node.lineno
                 })
-            # Detect set comprehension
             elif isinstance(node, ast.SetComp):
                 self.issues.append({
                     "issue": "Inefficient memory usage detected (Set comprehension)",
@@ -25,7 +23,6 @@ class StaticAnalyzer:
     def detect_blocking_operations(self):
         """Detect potential real-time constraint violations (e.g., sleep calls)."""
         for node in ast.walk(self.tree):
-            # Detect 'sleep' call that could cause blocking
             if isinstance(node, ast.Call):
                 if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
                     if node.func.value.id == "time" and node.func.attr == "sleep":
@@ -36,7 +33,7 @@ class StaticAnalyzer:
 
     def detect_variable_type_reassignment(self):
         """Detect variables being reassigned with different types."""
-        variable_types = {}  # Keeps track of variable types
+        variable_types = {}
         for node in ast.walk(self.tree):
             if isinstance(node, ast.Assign):
                 for target in node.targets:
@@ -44,7 +41,6 @@ class StaticAnalyzer:
                         var_name = target.id
                         if var_name in variable_types:
                             old_type = variable_types[var_name]
-                            # Check if the type is changing
                             new_type = type(node.value).__name__
                             if old_type != new_type:
                                 self.issues.append({
@@ -57,12 +53,11 @@ class StaticAnalyzer:
         """Detect large loops that may cause performance issues."""
         for node in ast.walk(self.tree):
             if isinstance(node, ast.For):
-                # Check for loop ranges with a large number of iterations
                 if isinstance(node.iter, ast.Call) and isinstance(node.iter.func, ast.Name) and node.iter.func.id == 'range':
                     start = node.iter.args[0] if len(node.iter.args) > 0 else None
                     stop = node.iter.args[1] if len(node.iter.args) > 1 else None
                     if isinstance(stop, ast.Constant) and isinstance(start, ast.Constant):
-                        if stop.value - start.value > 100000:  # Arbitrary large threshold
+                        if stop.value - start.value > 100000:
                             self.issues.append({
                                 "issue": f"Large loop detected with {stop.value - start.value} iterations",
                                 "line": node.lineno
@@ -90,6 +85,22 @@ class StaticAnalyzer:
                         "line": node.lineno
                     })
 
+    def detect_inefficient_loop_concat(self):
+        """Detect inefficient list concatenation inside loops."""
+        for node in ast.walk(self.tree):
+            if isinstance(node, ast.For):
+                for child in ast.walk(node):
+                    if isinstance(child, ast.Assign):
+                        if isinstance(child.value, ast.BinOp) and isinstance(child.value.op, ast.Add):
+                            if (
+                                isinstance(child.value.left, ast.Name) and
+                                isinstance(child.value.right, ast.List)
+                            ):
+                                self.issues.append({
+                                    "issue": "Inefficient list concatenation inside loop detected",
+                                    "line": child.lineno
+                                })
+
     def analyze(self):
         """Run all analysis checks."""
         self.detect_memory_issues()
@@ -98,6 +109,7 @@ class StaticAnalyzer:
         self.detect_large_loops()
         self.detect_unreachable_code()
         self.detect_unnecessary_try_except()
+        self.detect_inefficient_loop_concat()
         return json.dumps(self.issues, indent=4)
 
 if __name__ == "__main__":
@@ -130,6 +142,11 @@ try:
     pass
 except:
     pass
-    """
+
+# Inefficient list concatenation inside loop
+numbers = []
+for i in range(10):
+    numbers = numbers + [i]
+"""
     analyzer = StaticAnalyzer(test_code)
     print(analyzer.analyze())

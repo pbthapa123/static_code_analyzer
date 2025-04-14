@@ -14,8 +14,37 @@ The **Static Code Analyzer** is a Python-based tool designed to analyze source c
 
 ## Primary Functionalities
 - **GUI Interface:** `gui.py` handles the user interface, allowing users to upload Python files easily.
-- **Static Analysis Engine:** `static_analyzer.py` examines the uploaded code, identifying memory inefficiencies and blocking operations.
-- **Smooth Workflow:** The GUI seamlessly integrates with the analysis engine, displaying results in an intuitive interface.
+- **Static Analysis Engine:** `static_analyzer.py` examines the uploaded code, identifying memory inefficiencies 
+    and blocking operations.
+- **Smooth Workflow:** The GUI seamlessly integrates with the analysis engine, displaying results in an intuitive 
+                       interface.
+- **Detection of Code Smells & Issues**:
+  - **Blocking operations** such as `time.sleep()`
+  - **Memory-heavy patterns** like large list/dict creations (planned for future updates)
+  - **Inefficient loops** (planned for future updates)
+  - **Missing docstrings** for functions
+  - **Dangerous variable reassignment** (e.g., changing types)
+  - **Improper identity comparisons** (`is` vs `==`)
+
+
+## Features
+   - GUI to upload and analyze .py files
+
+   - Detects:
+     i. Blocking operations (e.g., time.sleep)
+     ii. Function definitions missing docstrings
+     iii. Unreachable code after return/break/continue
+     iv. Dangerous variable reassignments (e.g., changing types)
+     v. Improper identity comparisons (is vs ==)
+
+   - Planned future updates:
+     i. Detect memory-heavy patterns (e.g., large lists/dicts)
+     ii. Detect inefficient loops (e.g., nested loops or long ranges)
+
+   - Displays issues in both GUI and console
+
+   - Lightweight and extendable (ideal for future ML/AI enhancements)
+
 
 ## Technologies Used
 - **Python** – Core programming language
@@ -31,7 +60,14 @@ To get started with the Static Code Analyzer, follow these steps:
    cd static_code_analyzer
 
 2. **Install the Dependencies**
-    pip install -r requirements.txt
+     - Python 3.8+
+
+     - tkinter (built-in with Python)
+   
+     - pip install -r requirements.txt
+
+     - No third-party libraries needed for the basic version
+    
 
 3. **Run the application**
     python gui.py
