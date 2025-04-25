@@ -60,18 +60,30 @@ To get started with the Static Code Analyzer, follow these steps:
    cd static_code_analyzer
 
 2. **Install the Dependencies**
-     - Python 3.8+
+     - Python 3.8 or newer (works best up to 3.12)
 
      - tkinter (built-in with Python)
-   
-     - pip install -r requirements.txt
 
      - No third-party libraries needed for the basic version
+
+     - pip install -r requirements.txt
     
 
 3. **Run the application**
     python gui.py
 
+4. **Testing Without Setup (Executable Included)**
+
+     - For easier testing, an executable file is provided in the `/dist` folder.
+     - No Python or setup required — just double-click `gui.exe` to launch the analyzer.
+     - Only use the older versions like Python 3.10 which is a stable version to recreate the .exe. Newer 
+       Python versions like Python 3.13 is still in development preview and not fully supported by tools like 
+       PyInstaller.
+
+4. **Video**
+   - The application is best run using Python directly due to compatibility concerns with preview versions like 
+     Python 3.13.
+   - Simply open a terminal and run: python gui.py — no install or executable needed.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
