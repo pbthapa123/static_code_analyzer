@@ -7,10 +7,12 @@
 ## Description
 The **Static Code Analyzer** is a Python-based tool designed to analyze source code and detect code smells, inefficiencies, and potential issues. It helps developers improve code quality by providing structured insights based on predefined analysis rules.
 
+
 ## Purpose & Value
 - **Ensure high-quality code** by detecting code smells and highlighting problematic areas.
 - **Assist developers** in maintaining clean, efficient, and readable code.
 - **Supports AI-assisted code reviews** (planned) by integrating machine learning for deeper analysis.
+
 
 ## Primary Functionalities
 - **GUI Interface:** `gui.py` handles the user interface, allowing users to upload Python files easily.
@@ -49,7 +51,8 @@ The **Static Code Analyzer** is a Python-based tool designed to analyze source c
 ## Technologies Used
 - **Python** – Core programming language
 - **Tkinter** – For a user-friendly GUI
-- **Machine Learning** *(optional)* – For advanced code smell detection (if time allows)
+- **Machine Learning** *(In near future/open for anyone who wishes to continue the project)* – For advanced       `                        code smell detection
+
 
 ## Setup Instructions
 
@@ -68,9 +71,9 @@ To get started with the Static Code Analyzer, follow these steps:
 
      - pip install -r requirements.txt
     
-
 3. **Run the application**
-    python gui.py
+
+      python gui.py
 
 4. **Testing Without Setup (Executable Included)**
 
@@ -79,11 +82,17 @@ To get started with the Static Code Analyzer, follow these steps:
      - Only use the older versions like Python 3.10 which is a stable version to recreate the .exe. Newer 
        Python versions like Python 3.13 is still in development preview and not fully supported by tools like 
        PyInstaller.
+     - The application is best run using Python directly due to compatibility concerns with preview versions l 
+       like Python 3.13.
+     - Simply open a terminal and run: python gui.py — no install or executable needed.
 
-4. **Video**
-   - The application is best run using Python directly due to compatibility concerns with preview versions like 
-     Python 3.13.
-   - Simply open a terminal and run: python gui.py — no install or executable needed.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
+##  YouTube Video 
+   
+     Link: https://youtu.be/9Th6u4Qj3ug
+     
